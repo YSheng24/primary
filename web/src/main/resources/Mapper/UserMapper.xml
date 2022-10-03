@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--
+namespace:名称空间
+-->
+<mapper namespace="com.example.web.mapper.IMapper">
+
+<!--    通过name判断是否存在-->
+    <select id="getByName" resultType="com.example.web.pojo.User">
+        select * from tb_user where loginName = #{loginName}
+    </select>
+<!--    通过id判断是否存在-->
+    <select id="getById" resultType="com.example.web.pojo.User">
+        select * from tb_user where id = #{id}
+    </select>
+<!--    查询所有用户-->
+    <select id="getAll" resultType="com.example.web.pojo.User">
+        select * from tb_user
+    </select>
+<!--    增加用户-->
+    <insert id="add" parameterType="com.example.web.pojo.User">
+        insert into
+            tb_user (loginName,password)
+        values
+            (#{loginName},#{password});
+    </insert>
+<!--    更新用户-->
+    <update id="update" parameterType="com.example.web.pojo.User">
+        update
+            tb_user
+        set
+            password = #{password},loginName = #{loginName}
+        where
+            id = #{id}
+    </update>
+<!--    删除-->
+    <delete id="delete" parameterType="com.example.web.pojo.User">
+        delete from tb_user
+        where id = #{id}
+    </delete>
+
+
+</mapper>
